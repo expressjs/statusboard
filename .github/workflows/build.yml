@@ -1,0 +1,46 @@
+name: Index and build site
+
+on:
+  pull_request:
+    branches:
+      - master
+  push:
+    branches:
+      - master
+  schedule:
+  - cron:  "0 */2 * * *"
+
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js 12
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12
+    - name: Setup git user
+      run: |
+        git config user.email "<>"
+        git config user.name "${GITHUB_ACTOR}"
+    - name: Setup gh-pages branch
+      run: |
+        git checkout gh-pages || (git checkout --orphan gh-pages && git reset && touch .nojekyll && git add .nojekyll && git commit -m "gh-pages init" && git clean -fdx)
+        git pull -X theirs origin gh-pages
+        git checkout -
+        git worktree add build gh-pages || echo "build worktree exists"
+    - name: NPM install
+      run: |
+        npm i
+    - name: Build index
+      env:
+        GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      run: npm run buildindex
+    - name: Build site
+      run: npm run buildsite
+    - name: Commit and push gh-pages
+      run: |
+        cd build
+        git add .
+        git commit -m "Building gh-pages from ${GITHUB_SHA}"
+        git push https://${GITHUB_ACTOR}:${{secrets.GH_TOKEN}}@github.com/${GITHUB_REPOSITORY}.git gh-pages -f
