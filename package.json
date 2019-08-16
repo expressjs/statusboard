@@ -1,6 +1,6 @@
 {
   "name": "@expressjs/statusboard",
-  "version": "1.0.0",
+  "version": "1.0.1-013c32a82d6d63d3a15b37478d67c9fe6927b9ba.0",
   "description": "Express project StatusBoard",
   "author": "Wes Todd <wes@wesleytodd.com>",
   "keywords": [
