@@ -170,7 +170,7 @@ class ProjectList extends LitElement {
           <tr>
             <td>
               <a href="https://www.github.com/${project.repoOwner}" target="_blank">${project.repoOwner}</a>
-              / <a href="${project.repo.url || `https://www.github.com/${project.repoOwner}/${project.repoName}`}" target="_blank">${project.repoName}</a>
+              / <a href="${(project.repoDetails && project.repoDetails.url) || `https://www.github.com/${project.repoOwner}/${project.repoName}`}" target="_blank">${project.repoName}</a>
             </td>
             <td title="Stars">
               ${project.stars || '0'}
@@ -12232,4 +12232,4 @@ exports = module.exports = function(a, b){
 };
 
 },{}]},{},[1])
-//# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/js/index-12bb51ac9471cb0196c1b6e89af89590fc299126c4891280ba596908212c5eb0.js.map
+//# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/js/index-d28b6cd96ae871e0f935a70bd5a5dc9a273bd5b7ba363ac1e71b4f9f0c8cd99c.js.map
