@@ -174,15 +174,15 @@ class ProjectList extends LitElement {
             </td>
             <td title="Stars">
               ${project.stars || '0'}
-              <img class="octicon" src="${this.config.baseUrl}icons/star.svg">
+              <img class="octicon" src="${this.config.baseUrl}/icons/star.svg">
             </td>
             <td title="Watchers">
               ${project.watchers || '0'}
-              <img class="octicon" src="${this.config.baseUrl}icons/eye.svg">
+              <img class="octicon" src="${this.config.baseUrl}/icons/eye.svg">
             </td>
             <td title="Open Issues">
               ${project.openIssues || '0'}
-              <img class="octicon" src="${this.config.baseUrl}icons/issue-opened.svg">
+              <img class="octicon" src="${this.config.baseUrl}/icons/issue-opened.svg">
             </td>
             <td>
               ${project.packageJson && (html`
@@ -12232,4 +12232,4 @@ exports = module.exports = function(a, b){
 };
 
 },{}]},{},[1])
-//# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/js/index-d28b6cd96ae871e0f935a70bd5a5dc9a273bd5b7ba363ac1e71b4f9f0c8cd99c.js.map
+//# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/js/index-3f8244af5880df93e6edce17a626c59f9bc168904a2bd622c3d2621db9e9a539.js.map
