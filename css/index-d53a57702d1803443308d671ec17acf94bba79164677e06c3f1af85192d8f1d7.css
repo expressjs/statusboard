@@ -1,3 +1,28 @@
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body,
 :host {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -339,53 +364,19 @@ template {
   display: none;
 }
 
-header {
-  display: flex;
-  align-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-height: 2.75rem;
-  background-image: linear-gradient(#fafafa, #f0f0f0);
-  background-repeat: repeat-x;
-  border-bottom: 1px solid #ddd;
-  padding: 0 1rem;
-}
-
-header .logo {
-    line-height: 0;
-    margin: 0 6rem 0 0;
+.issues-list ul, .users-list ul {
+    list-style: circle;
   }
 
-header .logo a {
-      font-size: 25px;
-      font-weight: 100;
-      color: #444;
-      text-decoration: none;
+.issues-list ul li, .users-list ul li {
+      padding: .25rem 0;
     }
 
-header nav {
-    padding-top: .25rem;
-  }
-
-header nav a {
-      display: inline-block;
-      color: #444;
-      text-transform: lowercase;
-      font-size: .9rem;
-      padding: .75rem;
-      border-left: .0625rem solid #efefef;
-      border-right: .0625rem solid #efefef;
-    }
-
-header nav a:hover {
-      text-decoration: none;
-      background: #fafafa;
-    }
-
-main {
-  padding: 4.75rem 2rem 2rem;
+.project-link {
+  display: inline-block;
+  padding: .3rem;
+  background: #efefef;
+  border: .01rem solid #ddd;
 }
 
-/*# sourceMappingURL=index-129e83145866f248370e27e7b4f67e8ce0cee49d0587dbf0bcbba5e1bb3185c1.css.map */
+/*# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/css/index-d53a57702d1803443308d671ec17acf94bba79164677e06c3f1af85192d8f1d7.css.map */

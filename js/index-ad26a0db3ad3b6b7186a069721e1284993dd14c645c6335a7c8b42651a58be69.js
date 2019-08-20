@@ -1,5 +1,6 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 'use strict'
+/* eslint-disable */
 /* eslint-env browser */
 require('regenerator-runtime/runtime')
 const { html } = require('es5-lit-element')
@@ -22,34 +23,40 @@ require('nighthawk')({
     next()
   })
   .get('/', async () => {
-    const taggedIssues = await (await fetch(`${config.baseUrl}/data/taggedIssues.json`)).json()
-    const activity = await (await fetch(`${config.baseUrl}/data/activityStats.json`)).json()
+    const taggedIssues = await (await fetch(`${config.baseUrl}data/labeledIssues.json`)).json()
+    const userActivity = await (await fetch(`${config.baseUrl}data/userActivity.json`)).json()
 
     render(html`
-      <statusboard-page .title="${config.title}" .description="${config.description}" .cssFile="${config.css.page}" .baseUrl="${config.baseUrl}">
+      <statusboard-page .config="${config}">
         <style>main {display: flex;}</style>
         <main>
           <section>
-            <h1>Get Involved</h1>
+            <h1><a href="${config.baseUrl}issues">Top Issues</a></h1>
 
             ${Object.entries(taggedIssues).map(([tag, issues]) => html`
-              <div>
-                <h3>${tag}</h3>
+              <div class="issues-list">
+                <h3><a href="${config.baseUrl}issues/${tag}">${tag}</a></h3>
                 <ul>
-                  ${issues.map((issue) => html`
-                      <li><a href="${issue.url}">${issue.title}</a></li>
+                  ${issues.slice(0, 3).map((issue) => html`
+                      <li>
+                        <span class="project-link">
+                          <a href="https://www.github.com/${issue.project.repoOwner}" target="_blank">${issue.project.repoOwner}</a>
+                          / <a href="${issue.project.repo}" target="_blank">${issue.project.repoName}</a>
+                        </span>
+                        : <a href="${issue.url}" target="_blank">${issue.title}</a>
+                      </li>
                   `)}
                 </ul>
               </div>
             `)}
           </section>
 
-          <section>
+          <section class="users-list">
             <h1>Top Contributors</h1>
-              <ul>
-                ${Object.entries(activity.userActivity).map(([user, count]) => html`
-                  <li>${user}: ${count} contribution</li>
-                `)}
+            <ul>
+              ${Object.entries(userActivity).map(([user, count]) => html`
+                <li><a href="https://www.github.com/${user}" target="_blank">@${user}</a>: ${count} contribution</li>
+              `)}
             </ul>
           </section>
         </main>
@@ -57,10 +64,48 @@ require('nighthawk')({
     `, document.body)
   })
   .get('/projects', async () => {
-    const projects = await (await fetch(`${config.baseUrl}/data/projects.json`)).json()
+    const projects = await (await fetch(`${config.baseUrl}data/projects.json`)).json()
     render(html`
-      <statusboard-page .title="${config.title}" .description="${config.description}" .cssFile="${config.css.page}" .baseUrl="${config.baseUrl}">
-        <statusboard-project-list .projects=${projects} .cssFile="${config.css.projectList}" .baseUrl="${config.baseUrl}" />
+      <statusboard-page .config="${config}">
+        <statusboard-project-list .projects=${projects} .config="${config}" />
+      </statusboard-page>
+    `, document.body)
+  })
+  .get('/issues', async () => {
+    const taggedIssues = await (await fetch(`${config.baseUrl}data/labeledIssues.json`)).json()
+    const userActivity = await (await fetch(`${config.baseUrl}data/userActivity.json`)).json()
+
+    render(html`
+      <statusboard-page .config="${config}">
+        <h1>Issues</h1>
+        <main>
+          ${Object.entries(taggedIssues).map(([tag, issues]) => html`
+            <section>
+              <h1><a href="${config.baseUrl}issues/${tag}">${tag}</a></h1>
+
+              <div class="issues-list">
+                <ul>
+                  ${issues.map((issue) => html`
+                      <li>
+                        <span class="project-link">
+                          <a href="https://www.github.com/${issue.project.repoOwner}" target="_blank">${issue.project.repoOwner}</a>
+                          / <a href="${issue.project.repo}" target="_blank">${issue.project.repoName}</a>
+                        </span>
+                        : <a href="${issue.url}" target="_blank">${issue.title}</a>
+                      </li>
+                  `)}
+                </ul>
+              </div>
+            </section>
+          `)}
+        </main>
+      </statusboard-page>
+    `, document.body)
+  })
+  .get('/issues/:label', async (req, res) => {
+    render(html`
+      <statusboard-page .config="${config}">
+        <h1>Issues: ${req.params.label}</h1>
       </statusboard-page>
     `, document.body)
   })
@@ -74,24 +119,25 @@ const { LitElement, html } = require('es5-lit-element')
 class Page extends LitElement {
   static get properties () {
     return {
-      title: { type: String },
-      discription: { type: String },
-      baseUrl: { type: String },
-      cssFile: { type: String }
+      config: { type: Object }
     }
   }
   render () {
     return html`
-      <link rel="stylesheet" href="${this.cssFile}" />
+      <link rel="stylesheet" href="${this.config.files.css.page}" />
       <header class="page-header">
         <h1 class="logo">
-          <a href="${this.baseUrl}" title="${this.title}">${this.title}</a>
+          <a href="${this.config.baseUrl}" title="${this.config.title}">${this.config.title}</a>
           <!-- <span class="description">${this.description}</span> -->
         </h1>
 
         <nav>
-          <a href="/statusboard/projects">Projects</a>
+          <a href="${this.config.baseUrl}" title="Home">Home</a>
+          <a href="${this.config.baseUrl}projects" title="Projects">Projects</a>
+          <a href="${this.config.baseUrl}issues" title="Issues">Issues</a>
         </nav>
+
+        <a class="statusboard" title="About @pkgjs/statusboard" href="https://github.com/pkgjs/statusboard" target="_blank">@pkgjs/statusboard</a>
       </header>
       <main class="main-content">
         <slot></slot>
@@ -111,47 +157,53 @@ const { LitElement, html } = require('es5-lit-element')
 class ProjectList extends LitElement {
   static get properties () {
     return {
-      cssFile: { type: String },
-      baseUrl: { type: String },
+      config: { type: Object },
       projects: { type: Object }
     }
   }
   render () {
     return html`
-      <link rel="stylesheet" href="${this.cssFile}" />
+      <link rel="stylesheet" href="${this.config.files.css.projectList}" />
       <h2>Projects</h2>
       <table class="project-list">
         ${this.projects.map((project) => html`
           <tr>
             <td>
-              <a href="${project.homepage || project.url}">${project.packageName}</a>
+              <a href="https://www.github.com/${project.repoOwner}" target="_blank">${project.repoOwner}</a>
+              / <a href="${project.repoDetails.url}" target="_blank">${project.repoName}</a>
             </td>
             <td title="Stars">
-              ${project.stars}
-              <img class="octicon" src="${this.baseUrl}/icons/star.svg">
+              ${project.stars || '0'}
+              <img class="octicon" src="${this.config.baseUrl}icons/star.svg">
             </td>
             <td title="Watchers">
-              ${project.watchers}
-              <img class="octicon" src="${this.baseUrl}/icons/eye.svg">
+              ${project.watchers || '0'}
+              <img class="octicon" src="${this.config.baseUrl}icons/eye.svg">
             </td>
             <td title="Open Issues">
-              ${project.openIssues}
-              <img class="octicon" src="${this.baseUrl}/icons/issue-opened.svg">
+              ${project.openIssues || '0'}
+              <img class="octicon" src="${this.config.baseUrl}icons/issue-opened.svg">
             </td>
             <td>
-              <a href="https://npmjs.org/package/${project.packageName}">
-                <img src="https://badgen.net/npm/v/${project.packageName}" />
-              </a>
+              ${project.packageJson && (html`
+                <a href="https://npmjs.org/package/${project.packageName}">
+                  <img src="https://badgen.net/npm/v/${project.packageName}" />
+                </a>
+              `)}
             </td>
             <td>
-              <a href="https://npmjs.org/package/${project.packageName}">
-                <img src="https://badgen.net/npm/dm/${project.packageName}" />
-              </a>
+              ${project.packageJson && (html`
+                <a href="https://npmjs.org/package/${project.packageName}">
+                  <img src="https://badgen.net/npm/dm/${project.packageName}" />
+                </a>
+              `)}
             </td>
             <td>
-              <a href="https://travis-ci.org/${project.owner}/${project.name}">
-                <img src="https://badgen.net/travis/${project.owner}/${project.name}" />
-              </a>
+              ${project.travis && (html`
+                <a href="https://travis-ci.org/${project.owner}/${project.name}">
+                  <img src="https://badgen.net/travis/${project.owner}/${project.name}" />
+                </a>
+              `)}
             </td>
           </tr>
         `)}
@@ -7468,7 +7520,7 @@ Router.prototype._processRequest = function (url, replace) {
 
   // Strip the base off before routing
   var path = url.pathname
-  if (this._base) {
+  if (this._base && this._base !== '/') {
     path = path.replace(this._base, '')
   }
 
@@ -12180,4 +12232,4 @@ exports = module.exports = function(a, b){
 };
 
 },{}]},{},[1])
-//# sourceMappingURL=index-34f4db5c8df64b25ff258b9c7df5b7e8d8e758b64c40bda4337ac9e87921be16.js.map
+//# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/js/index-ad26a0db3ad3b6b7186a069721e1284993dd14c645c6335a7c8b42651a58be69.js.map

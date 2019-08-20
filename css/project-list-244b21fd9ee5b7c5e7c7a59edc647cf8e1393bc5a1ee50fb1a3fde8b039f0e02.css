@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body,
 :host {
   font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -372,4 +376,4 @@ template {
     fill: currentColor;
   }
 
-/*# sourceMappingURL=index-c4c961ed3c8908915ca755050f16880342505a92ae7bd6624a39f0918b6fec74.css.map */
+/*# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/css/project-list-244b21fd9ee5b7c5e7c7a59edc647cf8e1393bc5a1ee50fb1a3fde8b039f0e02.css.map */

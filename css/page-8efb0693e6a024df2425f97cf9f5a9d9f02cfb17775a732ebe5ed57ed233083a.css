@@ -1,22 +1,5 @@
-/* Document
-   ========================================================================== */
-
-/**
- * 1. Correct the line height in all browsers.
- * 2. Prevent adjustments of font size after orientation changes in iOS.
- */
-
-html {
-  line-height: 1.15; /* 1 */
-  -webkit-text-size-adjust: 100%; /* 2 */
-}
-
-/**
- * Remove the margin in all browsers.
- */
-
-body {
-  margin: 0;
+* {
+  box-sizing: border-box;
 }
 
 body,
@@ -360,4 +343,60 @@ template {
   display: none;
 }
 
-/*# sourceMappingURL=index-a22f2fbb152e14657eb00727ae524108220e307c8cd6ddf4653fcb245e9bbded.css.map */
+header {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 2.75rem;
+  background-image: linear-gradient(#fafafa, #f0f0f0);
+  background-repeat: repeat-x;
+  border-bottom: 1px solid #ddd;
+  padding: 0 1rem;
+}
+
+header .logo {
+    line-height: 0;
+    margin: 0 6rem 0 0;
+  }
+
+header .logo a {
+      font-size: 25px;
+      font-weight: 100;
+      color: #444;
+      text-decoration: none;
+    }
+
+header nav {
+    padding-top: .25rem;
+    border-left: .0625rem solid #efefef;
+    display: flex;
+  }
+
+header nav a {
+      display: inline-block;
+      color: #444;
+      font-size: .9rem;
+      padding: .75rem;
+      border-right: .0625rem solid #efefef;
+    }
+
+header nav a:hover {
+      text-decoration: none;
+      background: #fafafa;
+    }
+
+header .statusboard {
+    margin-left: auto;
+    margin-right: 1rem;
+    font-size: .9rem;
+    color: #777;
+  }
+
+main {
+  padding: 4.75rem 2rem 2rem;
+}
+
+/*# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/css/page-8efb0693e6a024df2425f97cf9f5a9d9f02cfb17775a732ebe5ed57ed233083a.css.map */
