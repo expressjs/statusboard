@@ -127,14 +127,14 @@ class Page extends LitElement {
       <link rel="stylesheet" href="${this.config.files.css.page}" />
       <header class="page-header">
         <h1 class="logo">
-          <a href="${this.config.baseUrl}" title="${this.config.title}">${this.config.title}</a>
+          <a href="${this.config.baseUrl || '/'}" title="${this.config.title}">${this.config.title}</a>
           <!-- <span class="description">${this.description}</span> -->
         </h1>
 
         <nav>
-          <a href="${this.config.baseUrl}" title="Home">Home</a>
-          <a href="${this.config.baseUrl}projects" title="Projects">Projects</a>
-          <a href="${this.config.baseUrl}issues" title="Issues">Issues</a>
+          <a href="${this.config.baseUrl || '/'}" title="Home">Home</a>
+          <a href="${this.config.baseUrl}/projects" title="Projects">Projects</a>
+          <a href="${this.config.baseUrl}/issues" title="Issues">Issues</a>
         </nav>
 
         <a class="statusboard" title="About @pkgjs/statusboard" href="https://github.com/pkgjs/statusboard" target="_blank">@pkgjs/statusboard</a>
@@ -12232,4 +12232,4 @@ exports = module.exports = function(a, b){
 };
 
 },{}]},{},[1])
-//# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/js/index-ad26a0db3ad3b6b7186a069721e1284993dd14c645c6335a7c8b42651a58be69.js.map
+//# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/js/index-fa07bde56ecf309b6064fe50f7180dd2dd8d9a6ce8e3bb90936fca6663ab594e.js.map
