@@ -23,19 +23,19 @@ require('nighthawk')({
     next()
   })
   .get('/', async () => {
-    const taggedIssues = await (await fetch(`${config.baseUrl}/data/labeledIssues.json`)).json()
-    const userActivity = await (await fetch(`${config.baseUrl}/data/userActivity.json`)).json()
+    const taggedIssues = await (await fetch(`${config.baseUrl}data/labeledIssues.json`)).json()
+    const userActivity = await (await fetch(`${config.baseUrl}data/userActivity.json`)).json()
 
     render(html`
       <statusboard-page .config="${config}">
         <style>main {display: flex;}</style>
         <main>
           <section>
-            <h1><a href="${config.baseUrl}/issues">Top Issues</a></h1>
+            <h1><a href="${config.baseUrl}issues">Top Issues</a></h1>
 
             ${Object.entries(taggedIssues).map(([tag, issues]) => html`
               <div class="issues-list">
-                <h3><a href="${config.baseUrl}/issues/${tag}">${tag}</a></h3>
+                <h3><a href="${config.baseUrl}issues/${tag}">${tag}</a></h3>
                 <ul>
                   ${issues.slice(0, 3).map((issue) => html`
                       <li>
@@ -64,7 +64,7 @@ require('nighthawk')({
     `, document.body)
   })
   .get('/projects', async () => {
-    const projects = await (await fetch(`${config.baseUrl}/data/projects.json`)).json()
+    const projects = await (await fetch(`${config.baseUrl}data/projects.json`)).json()
     render(html`
       <statusboard-page .config="${config}">
         <statusboard-project-list .projects=${projects} .config="${config}" />
@@ -72,8 +72,8 @@ require('nighthawk')({
     `, document.body)
   })
   .get('/issues', async () => {
-    const taggedIssues = await (await fetch(`${config.baseUrl}/data/labeledIssues.json`)).json()
-    const userActivity = await (await fetch(`${config.baseUrl}/data/userActivity.json`)).json()
+    const taggedIssues = await (await fetch(`${config.baseUrl}data/labeledIssues.json`)).json()
+    const userActivity = await (await fetch(`${config.baseUrl}data/userActivity.json`)).json()
 
     render(html`
       <statusboard-page .config="${config}">
@@ -170,19 +170,19 @@ class ProjectList extends LitElement {
           <tr>
             <td>
               <a href="https://www.github.com/${project.repoOwner}" target="_blank">${project.repoOwner}</a>
-              / <a href="${(project.repoDetails && project.repoDetails.url) || `https://www.github.com/${project.repoOwner}/${project.repoName}`}" target="_blank">${project.repoName}</a>
+              / <a href="${project.repoDetails.url}" target="_blank">${project.repoName}</a>
             </td>
             <td title="Stars">
               ${project.stars || '0'}
-              <img class="octicon" src="${this.config.baseUrl}/icons/star.svg">
+              <img class="octicon" src="${this.config.baseUrl}icons/star.svg">
             </td>
             <td title="Watchers">
               ${project.watchers || '0'}
-              <img class="octicon" src="${this.config.baseUrl}/icons/eye.svg">
+              <img class="octicon" src="${this.config.baseUrl}icons/eye.svg">
             </td>
             <td title="Open Issues">
               ${project.openIssues || '0'}
-              <img class="octicon" src="${this.config.baseUrl}/icons/issue-opened.svg">
+              <img class="octicon" src="${this.config.baseUrl}icons/issue-opened.svg">
             </td>
             <td>
               ${project.packageJson && (html`
@@ -12232,4 +12232,4 @@ exports = module.exports = function(a, b){
 };
 
 },{}]},{},[1])
-//# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/js/index-3f8244af5880df93e6edce17a626c59f9bc168904a2bd622c3d2621db9e9a539.js.map
+//# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/js/index-fa07bde56ecf309b6064fe50f7180dd2dd8d9a6ce8e3bb90936fca6663ab594e.js.map
