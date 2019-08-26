@@ -360,20 +360,8 @@ template {
   }
 
 .project-list tr td:nth-child(1) {
-    max-width: 4rem;
+    min-width: 8rem;
+    max-width: 12rem;
   }
 
-.project-list tr td:nth-child(2),
-  .project-list tr td:nth-child(3),
-  .project-list tr td:nth-child(4) {
-    max-width: 2rem;
-    text-align: right;
-  }
-
-.project-list .octicon {
-    display: inline-block;
-    vertical-align: text-top;
-    fill: currentColor;
-  }
-
-/*# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/css/project-list-244b21fd9ee5b7c5e7c7a59edc647cf8e1393bc5a1ee50fb1a3fde8b039f0e02.css.map */
+/*# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/css/project-list-980bdafb2b9140bd2c95d74c562ef027f3accf4edb76548af23b4cafaa56f7be.css.map */

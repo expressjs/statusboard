@@ -173,16 +173,39 @@ class ProjectList extends LitElement {
               / <a href="${(project.repoDetails && project.repoDetails.url) || `https://www.github.com/${project.repoOwner}/${project.repoName}`}" target="_blank">${project.repoName}</a>
             </td>
             <td title="Stars">
-              ${project.stars || '0'}
-              <img class="octicon" src="${this.config.baseUrl}/icons/star.svg">
+              <a href="https://npmjs.org/package/${project.packageName}">
+                <img src="https://badgen.net/github/stars/${project.repo}?color=yellow" />
+              </a>
             </td>
             <td title="Watchers">
-              ${project.watchers || '0'}
-              <img class="octicon" src="${this.config.baseUrl}/icons/eye.svg">
+              <a href="https://www.github.com/${project.repo}">
+                <img src="https://badgen.net/github/watchers/${project.repo}" />
+              </a>
             </td>
-            <td title="Open Issues">
-              ${project.openIssues || '0'}
-              <img class="octicon" src="${this.config.baseUrl}/icons/issue-opened.svg">
+            <td title="Issues">
+              <a href="https://www.github.com/${project.repo}">
+                <img src="https://badgen.net/github/open-issues/${project.repo}" />
+              </a>
+            </td>
+            <td title="PRs">
+              <a href="https://www.github.com/${project.repo}">
+                <img src="https://badgen.net/github/open-prs/${project.repo}" />
+              </a>
+            </td>
+            <td title="commits">
+              <a href="https://www.github.com/${project.repo}">
+                <img src="https://badgen.net/github/commits/${project.repo}" />
+              </a>
+            </td>
+            <td title="License">
+              <a href="https://www.github.com/${project.repo}">
+                <img src="https://badgen.net/github/license/${project.repo}" />
+              </a>
+            </td>
+            <td title="Contributors">
+              <a href="https://www.github.com/${project.repo}">
+                <img src="https://badgen.net/github/contributors/${project.repo}" />
+              </a>
             </td>
             <td>
               ${project.packageJson && (html`
@@ -200,8 +223,8 @@ class ProjectList extends LitElement {
             </td>
             <td>
               ${project.travis && (html`
-                <a href="https://travis-ci.org/${project.owner}/${project.name}">
-                  <img src="https://badgen.net/travis/${project.owner}/${project.name}" />
+                <a href="https://travis-ci.org/${project.repo}">
+                  <img src="https://badgen.net/travis/${project.repo}" />
                 </a>
               `)}
             </td>
@@ -12232,4 +12255,4 @@ exports = module.exports = function(a, b){
 };
 
 },{}]},{},[1])
-//# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/js/index-3f8244af5880df93e6edce17a626c59f9bc168904a2bd622c3d2621db9e9a539.js.map
+//# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/js/index-18f9f38921ae203382ae6f129bb6bb77051aeec70626ff34746803f3e116d916.js.map
