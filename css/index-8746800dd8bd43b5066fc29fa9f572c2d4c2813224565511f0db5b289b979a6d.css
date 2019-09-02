@@ -364,8 +364,41 @@ template {
   display: none;
 }
 
+.users-list li {
+  display: flex;
+  align-items: center;
+}
+
+.users-list li a {
+    display: flex;
+    align-items: center;
+  }
+
+.avatar {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  border-radius: 50%;
+  border: .125rem solid #ccc;
+  margin-right: .25rem;
+}
+
+.avatar img {
+    max-width: 100%;
+  }
+
+.issues-list,
+.users-list {
+  min-width: 20rem;
+  padding-left: 1rem;
+  padding-bottom: 1rem;
+}
+
 .issues-list ul, .users-list ul {
     list-style: circle;
+    padding: 0;
+    margin: 0;
   }
 
 .issues-list ul li, .users-list ul li {
@@ -379,4 +412,4 @@ template {
   border: .01rem solid #ddd;
 }
 
-/*# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/css/index-d53a57702d1803443308d671ec17acf94bba79164677e06c3f1af85192d8f1d7.css.map */
+/*# sourceMappingURL=/home/runner/work/statusboard/statusboard/build/css/index-8746800dd8bd43b5066fc29fa9f572c2d4c2813224565511f0db5b289b979a6d.css.map */
