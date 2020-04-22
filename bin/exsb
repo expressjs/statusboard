@@ -1,0 +1,6 @@
+#! /usr/bin/env node
+'use strict'
+const { cli } = require('@pkgjs/statusboard')
+
+// Construct the cli
+cli(require('..'), process.argv.slice(2))
