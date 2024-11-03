@@ -1,0 +1,29 @@
+{
+  "name": "@expressjs/statusboard",
+  "private": true,
+  "description": "Express project StatusBoard",
+  "author": "Wes Todd <wes@wesleytodd.com>",
+  "maintainers": [
+    "Sebastian Beltran <bjohansebas@gmail.com>"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "exsb": "./bin/exsb"
+  },
+  "scripts": {
+    "test": "standard && mocha",
+    "prepublushOnly": "npm t",
+    "build": "./bin/exsb build",
+    "buildsite": "npm run clean && ./bin/exsb site",
+    "buildindex": "./bin/exsb index",
+    "clean": "rm -rf build/css build/js"
+  },
+  "devDependencies": {
+    "mocha": "^6.2.0",
+    "standard": "^13.1.0"
+  },
+  "dependencies": {
+    "@pkgjs/statusboard": "0.0.14"
+  }
+}
