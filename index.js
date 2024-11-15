@@ -20,12 +20,13 @@ const config = module.exports.config = async (c = {}) => {
     // Project configs
     title: 'Express',
     description: 'Fast, unopinionated, minimalist web framework for node. ',
-    issueLabels: ['top priority', 'good first issue', 'require-triage', 'help wanted', 'discuss', 'meeting'],
+    issueLabels: ['top priority', 'tc agenda' ,'meeting', 'discuss', 'good first issue', 'require-triage', 'help wanted'],
     projects: [
       'expressjs/admin',
       'expressjs/basic-auth-connect',
       'expressjs/body-parser',
       'expressjs/compression',
+      'expressjs/codemod',
       'expressjs/cors',
       'expressjs/discussions',
       'expressjs/express',
