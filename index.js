@@ -20,12 +20,13 @@ const config = module.exports.config = async (c = {}) => {
     // Project configs
     title: 'Express',
     description: 'Fast, unopinionated, minimalist web framework for node. ',
-    issueLabels: ['top priority', 'tc agenda' ,'meeting', 'discuss', 'good first issue', 'require-triage', 'help wanted'],
+    issueLabels: ['top priority', 'tc agenda', 'meeting', 'discuss', 'good first issue', 'require-triage', 'help wanted'],
     projects: [
       'expressjs/admin',
       'expressjs/basic-auth-connect',
       'expressjs/body-parser',
       'expressjs/compression',
+      'expressjs/cookie-parser',
       'expressjs/codemod',
       'expressjs/cors',
       'expressjs/discussions',
@@ -38,6 +39,7 @@ const config = module.exports.config = async (c = {}) => {
       'expressjs/serve-static',
       'expressjs/errorhandler',
       'expressjs/serve-index',
+      'expressjs/security-wg',
       'expressjs/timeout',
       'expressjs/flash',
       'expressjs/vhost',
