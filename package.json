@@ -24,6 +24,6 @@
     "standard": "^13.1.0"
   },
   "dependencies": {
-    "@pkgjs/statusboard": "0.1.1"
+    "@pkgjs/statusboard": "0.1.2"
   }
 }
