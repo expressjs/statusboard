@@ -18,6 +18,11 @@ const config = module.exports.config = async (c = {}) => {
       token: process.env.GITHUB_TOKEN
     },
     bots: false,
+    head: [
+      '<link rel="shortcut icon" type="image/x-icon" href="https://raw.githubusercontent.com/expressjs/statusboard/HEAD/public/favicon.ico" />',
+      '<meta property="og:image" content="https://raw.githubusercontent.com/expressjs/statusboard/HEAD/public/og.png" />',
+      '<meta name="twitter:image" content="https://raw.githubusercontent.com/expressjs/statusboard/HEAD/public/og.png" />'
+    ],
     // Project configs
     title: 'Express',
     description: 'Fast, unopinionated, minimalist web framework for node. ',
