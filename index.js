@@ -17,6 +17,7 @@ const config = module.exports.config = async (c = {}) => {
     github: {
       token: process.env.GITHUB_TOKEN
     },
+    bots: false,
     // Project configs
     title: 'Express',
     description: 'Fast, unopinionated, minimalist web framework for node. ',
