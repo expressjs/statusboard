@@ -51,6 +51,7 @@ const config = module.exports.config = async (c = {}) => {
       'expressjs/vhost',
 
       'pillarjs/router',
+      'pillarjs/iconv-lite',
       'pillarjs/cookies',
       'pillarjs/send',
       'pillarjs/finalhandler',
